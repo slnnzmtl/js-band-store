@@ -1,0 +1,14 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+
+  &__label {
+    align-self: flex-start;
+    margin-bottom: 10px;
+  }
+
+  &__input {
+    margin-bottom: 10px;
+  }
+}

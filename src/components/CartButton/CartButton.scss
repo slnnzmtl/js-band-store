@@ -1,0 +1,13 @@
+.cart-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__img {
+    max-width: 30px;
+  }
+
+  &__span {
+    margin-left: 5px;
+  }
+}
