@@ -1,0 +1,10 @@
+.goods-list {
+  display: flex;
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+  .good-card {
+    margin: 20px;
+  }
+}

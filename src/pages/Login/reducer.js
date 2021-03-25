@@ -43,8 +43,9 @@ const loginReducer = (state = initialState, action) => {
       return getCurrentUserFromLocal(state);
     case RESET_CURRENT_USER:
       return resetCurrentUser(state);
+
     default: 
-      return false;
+      return state;
   }
 };
 

@@ -12,7 +12,7 @@ import { useState } from "react";
 const Login = () => {
 
   const dispatch = useDispatch();
-  const currentUser = useSelector(state => state && state.currentUser);
+  const currentUser = useSelector(state => state.auth.currentUser);
   const [name, setName] = useState(currentUser.username);
 
   console.log('login index');

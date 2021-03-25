@@ -10,8 +10,10 @@ import UserMenu from "./components/UserMenu/UserMenu";
 import Header from "./components/Header/Header";
 
 const App = () => {
-  const currentUser = useSelector(state => state && state.currentUser);
+  const currentUser = useSelector(state => state.auth.currentUser);
   const dispatch = useDispatch();
+
+  console.log(currentUser);
 
   useEffect(() => {
     if (!currentUser || !currentUser.username) {
