@@ -14,9 +14,9 @@ export const getProducts = () => async (dispatch, getState) => {
     const response = await API.getBooks(token);
     if (response.message) throw new Error(response.message);
 
-    dispatch({ type: GET_PRODUCTS_SUCCESS, payload: response });
+    return dispatch({ type: GET_PRODUCTS_SUCCESS, payload: response });
   } catch (error) {
-    dispatch({
+    return dispatch({
       type: GET_PRODUCTS_FAILURE,
       payload: error,
     });

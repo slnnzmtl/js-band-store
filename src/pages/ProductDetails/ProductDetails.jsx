@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import ProductInfo from '../../components/ProductInfo/ProductInfo';
+import ProductInfo from './components/ProductInfo/ProductInfo';
 import CartWidget from '../../components/CartWidget/CartWidget';
 import * as actions from './store/productDetailsActions';
 import reducer from './store/productDetailsSlice';

@@ -9,18 +9,15 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 export const userLogin = (username) => async (dispatch) => {
   dispatch({ type: USER_LOGIN_STARTED });
 
-  try {
-    const response = await API.login(username);
-    dispatch({ type: USER_LOGIN_SUCCESS, payload: response });
-  } catch (error) {
-    dispatch({
+  return API.login(username)
+    .then((response) => dispatch({ type: USER_LOGIN_SUCCESS, payload: response }))
+    .catch((error) => dispatch({
       type: USER_LOGIN_FAILURE,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+    }));
 };
 
 export const logoutUser = () => (dispatch) => dispatch({ type: USER_LOGOUT });

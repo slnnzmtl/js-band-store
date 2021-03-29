@@ -2,9 +2,9 @@
   display: flex;
   max-width: 100%;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   
   .product-card {
-    margin: 10px;
+    margin-bottom: 20px;
   }
 }

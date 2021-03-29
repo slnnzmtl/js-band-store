@@ -16,12 +16,13 @@ export const getCartFromLocalStorage = () => (dispatch) => dispatch({
 });
 export const getTotalPrice = () => (dispatch) => dispatch({ type: GET_TOTAL_PRICE });
 
-export const purchase = (data) => (dispatch, getState) => {
+export const purchase = (data) => async (dispatch, getState) => {
   const { token } = getState().auth.currentUser;
   dispatch({ type: PURCHASE_STARTED });
-  CartAPI.purchase(token, data)
+
+  return CartAPI.purchase(token, data)
     .then(() => dispatch({ type: PURCHASE_SUCCESS }))
-    .catch(() => dispatch({ type: PURCHASE_FAILED }));
+    .catch((error) => dispatch({ type: PURCHASE_FAILED, payload: error }));
 };
 
 export const resetCart = () => (dispatch) => dispatch({ type: CART_RESET });

@@ -16,49 +16,24 @@ class API {
         ...headers,
       },
     })
-      .then((response) => response.json())
-      .catch((error) => error);
+      .then((res) => {
+        if (!res.ok) throw Error(res.status);
+        return res.json();
+      });
   }
 
   get(entity, headers) {
-    try {
-      return fetch(`${this.path}/${entity}`, {
-        method: 'GET',
-        headers: {
-          ...this.headers,
-          ...headers,
-        },
-      });
-    } catch (error) {
-      return new Error(error);
-    }
-  }
-
-  delete(entity, id, headers) {
-    return fetch(`${this.path}/${entity}/${id}`, {
-      method: 'DELETE',
+    return fetch(`${this.path}/${entity}`, {
+      method: 'GET',
       headers: {
         ...this.headers,
         ...headers,
       },
-    });
-  }
-
-  put(entity, id, data, headers) {
-    const body = JSON.stringify({
-      data: JSON.stringify(data),
-    });
-
-    fetch(`${this.path}/${entity}/${id}`, {
-      method: 'PUT',
-      headers: {
-        ...this.headers,
-        ...headers,
-      },
-      body,
     })
-      .then((res) => res.json())
-      .catch((error) => error);
+      .then((res) => {
+        if (!res.ok) throw Error(res.status);
+        return res.json();
+      });
   }
 }
 

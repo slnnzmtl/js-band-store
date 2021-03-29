@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import './styles/App.scss';
 import {
   HashRouter as Router, Switch, Route, Redirect,
@@ -18,6 +17,7 @@ const LoginPage = lazy(() => import('./pages/Login/Login'));
 const CartPage = lazy(() => import('./pages/Cart/Cart'));
 const CatalogPage = lazy(() => import('./pages/Catalog/Catalog'));
 const DetailsPage = lazy(() => import('./pages/ProductDetails/ProductDetails'));
+const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
 const App = () => {
   const { currentUser } = useSelector((state) => state.auth);
@@ -56,9 +56,13 @@ const App = () => {
               <PrivateRoute path="/catalog" auth={!!currentUser.username} redirectTo="/login">
                 <CatalogPage />
               </PrivateRoute>
-              <Route path="/cart">
+              <PrivateRoute path="/cart" auth={!!currentUser.username} redirectTo="/login">
                 <CartPage />
+              </PrivateRoute>
+              <Route path="/404">
+                <NotFound />
               </Route>
+              <Redirect to="/404" />
             </Switch>
           </div>
         </Suspense>
