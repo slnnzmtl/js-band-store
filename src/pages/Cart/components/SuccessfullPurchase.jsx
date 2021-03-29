@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ModalWindow from '../../../components/ModalWindow/ModalWindow';
-import CartList from '../../../components/CartList/CartList';
+import CartList from './CartList/CartList';
 
 const SuccessfullPurchase = ({ closeWindow, list, totalPrice }) => (
   <ModalWindow closeWindow={closeWindow}>

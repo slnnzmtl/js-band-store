@@ -21,14 +21,16 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky install",
-    "fix-js": "eslint-auto-fix"
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "jest/valid-expect-in-promise": "off"
+    }
   },
   "browserslist": {
     "production": [
@@ -50,7 +52,6 @@
     "eslint-plugin-react": "^7.23.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "^6.2.0",
-    "husky": "^6.0.0",
     "sass": "^1.32.8",
     "sass-loader": "^11.0.1"
   }

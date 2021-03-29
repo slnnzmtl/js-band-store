@@ -18,6 +18,12 @@ const CartWidget = ({ data }) => {
   };
 
   const totalPrice = () => (data.price * counter).toFixed(2);
+  const setValue = (evt) => {
+    const value = evt.target.value;
+    if (value < 1) return setCounter(1);
+    if (value >= data.count) return setCounter(data.count);
+    return setCounter(value);
+  };
 
   return (
     <div className="cart-widget">
@@ -33,9 +39,7 @@ const CartWidget = ({ data }) => {
           id="counter"
           value={counter}
           className="cart-widget__value cart-widget__counter"
-          onChange={(e) => setCounter(
-            e.target.value <= data.count ? e.target.value : data.count,
-          )}
+          onChange={setValue}
         />
       </div>
       <div className="cart-widget__field">

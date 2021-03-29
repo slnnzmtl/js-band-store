@@ -10,7 +10,10 @@ const ProductList = ({ data }) => {
 
   return (
     <div className="product-list">
-      {data.map((item) => <ProductCard data={item} key={item.id} onClick={goToProductPage} />)}
+      {
+        data
+        && data.map((item) => <ProductCard data={item} key={item.id} onClick={goToProductPage} />)
+      }
     </div>
   );
 };

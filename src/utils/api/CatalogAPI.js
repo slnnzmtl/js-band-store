@@ -10,16 +10,14 @@ class CatalogAPI extends API {
   async getBooks(token) {
     return super.get(this.entity, {
       Authorization: `Bearer ${token}`,
-    })
-      .then((res) => res.json());
+    });
   }
 
   async getBookById(token, id) {
     return super.get(
       `${this.entity}/${id}`,
       { Authorization: `Bearer ${token}` },
-    )
-      .then((res) => res.json());
+    );
   }
 }
 

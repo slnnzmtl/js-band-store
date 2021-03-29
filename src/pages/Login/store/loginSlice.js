@@ -8,6 +8,8 @@ import {
 
 const initialState = {
   currentUser: {},
+  isLoading: false,
+  errorMessage: null,
 };
 
 const getCurrentUserFromLocal = () => {
@@ -46,7 +48,7 @@ const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        erorrMessage: action.payload,
+        errorMessage: action.payload,
       };
 
     case GET_CURRENT_USER_FROM_LOCAL: {

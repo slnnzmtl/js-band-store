@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import img from '../../assets/icons/tags.png';
+import img from '../../../../assets/icons/tags.png';
 import './ProductTags.scss';
 
 const ProductTags = ({ data }) => (

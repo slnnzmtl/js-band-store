@@ -9,17 +9,9 @@ export const getProductDetails = (id) => async (dispatch, getState) => {
   const { token } = getState().auth.currentUser;
 
   dispatch({ type: GET_PRODUCT_DETAILS_STARTED });
-  try {
-    const response = await API.getBookById(token, id);
-    if (response.message) throw new Error(response.message);
-
-    dispatch({ type: GET_PRODUCT_DETAILS_SUCCESS, payload: response });
-  } catch (error) {
-    dispatch({
-      type: GET_PRODUCT_DETAILS_FAILURE,
-      payload: error,
-    });
-  }
+  return API.getBookById(token, id)
+    .then((response) => dispatch({ type: GET_PRODUCT_DETAILS_SUCCESS, payload: response }))
+    .catch((error) => dispatch({ type: GET_PRODUCT_DETAILS_FAILURE, payload: error }));
 };
 
 export const resetProductDetails = () => (dispatch) => dispatch({ type: RESET_PRODUCT_DETAILS });

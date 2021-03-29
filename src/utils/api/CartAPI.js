@@ -7,7 +7,7 @@ class CartAPI extends API {
     this.entity = 'purchase';
   }
 
-  async purchase(token, data) {
+  purchase(token, data) {
     return super.post(
       this.entity,
       { books: data },

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import reducer from './store/cartSlice';
-import CartList from '../../components/CartList/CartList';
+import CartList from './components/CartList/CartList';
 import { getTotalPrice, purchase, resetCart } from './store/cartActions';
 import './Cart.scss';
 import SuccessfullPurchase from './components/SuccessfullPurchase';
@@ -25,7 +25,6 @@ const Cart = () => {
   };
 
   const closeWindow = () => {
-    console.log('close');
     dispatch(resetCart());
   };
 
