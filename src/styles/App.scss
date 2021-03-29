@@ -1,5 +1,13 @@
+@import "./variables.scss";
+
 .App {
   text-align: center;
+  font-family: $main_font;
+
+  &__main {
+    width: 90%;
+    margin: auto;
+  }
 }
 
 .App-logo {
