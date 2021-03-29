@@ -1,47 +1,67 @@
 // import logo from './logo.svg';
 import './styles/App.scss';
-import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import LoginPage from "./pages/Login/Login";
+import {
+  HashRouter as Router, Switch, Route, Redirect,
+} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import CatalogPage from "./pages/Catalog/Catalog";
-import { GET_CURRENT_USER_FROM_LOCAL } from "./store/actionTypes";
-import { Fragment, useEffect } from 'react';
-import UserMenu from "./components/UserMenu/UserMenu";
-import Header from "./components/Header/Header";
+import React, {
+  lazy, Suspense, useEffect,
+} from 'react';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import { getCartFromLocalStorage } from './pages/Cart/store/cartActions';
+import { getProducts } from './pages/Catalog/store/catalogActions';
+import Loader from './components/Loader/Loader';
+
+const Header = lazy(() => import('./components/Header/Header'));
+const UserMenu = lazy(() => import('./components/UserMenu/UserMenu'));
+const LoginPage = lazy(() => import('./pages/Login/Login'));
+const CartPage = lazy(() => import('./pages/Cart/Cart'));
+const CatalogPage = lazy(() => import('./pages/Catalog/Catalog'));
+const DetailsPage = lazy(() => import('./pages/ProductDetails/ProductDetails'));
 
 const App = () => {
-  const currentUser = useSelector(state => state.auth.currentUser);
+  const { currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  console.log(currentUser);
+  useEffect(() => {
+    dispatch(getCartFromLocalStorage());
+  }, [dispatch]);
 
   useEffect(() => {
-    if (!currentUser || !currentUser.username) {
-      dispatch({type: GET_CURRENT_USER_FROM_LOCAL});
-    }
-  }, []);
+    if (currentUser.username) dispatch(getProducts());
+  }, [currentUser, dispatch]);
 
   return (
     <div className="App">
-      {currentUser.username && 
-        <Fragment>
-          <UserMenu currentUser={currentUser} />
-          <Header />
-        </Fragment>
-      }
       <Router>
-        <Switch>
-          <Route exact path="/">
-            <Redirect to="/catalog" />
-          </Route>
-          <Route path="/login">
-            {!currentUser.username ? <LoginPage /> : <Redirect to="/catalog" />}
-          </Route>
-          <Route exact path="/catalog">
-            {currentUser.username ? <CatalogPage /> : <Redirect to="/login" />}
-          </Route>
-          <Route path="/cart" />
-        </Switch>
+        <Suspense fallback={<Loader />}>
+          {currentUser.username
+          && (
+          <>
+            <UserMenu currentUser={currentUser} />
+            <Header />
+          </>
+          )}
+          <div className="App__main">
+            <Switch>
+              <Route exact path="/">
+                <Redirect to="/catalog" />
+              </Route>
+              <PrivateRoute path="/login" auth={!currentUser.username} redirectTo="/">
+                <LoginPage />
+              </PrivateRoute>
+              <PrivateRoute path="/catalog/:id" auth={!!currentUser.username} redirectTo="/login">
+                <DetailsPage />
+              </PrivateRoute>
+              <PrivateRoute path="/catalog" auth={!!currentUser.username} redirectTo="/login">
+                <CatalogPage />
+              </PrivateRoute>
+              <Route path="/cart">
+                <CartPage />
+              </Route>
+            </Switch>
+          </div>
+        </Suspense>
       </Router>
     </div>
   );
