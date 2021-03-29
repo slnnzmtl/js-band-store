@@ -19,7 +19,7 @@ const CartWidget = ({ data }) => {
 
   const totalPrice = () => (data.price * counter).toFixed(2);
   const setValue = (evt) => {
-    const value = evt.target.value;
+    const { value } = evt.target;
     if (value < 1) return setCounter(1);
     if (value >= data.count) return setCounter(data.count);
     return setCounter(value);

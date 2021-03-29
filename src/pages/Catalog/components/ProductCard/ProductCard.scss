@@ -1,24 +1,39 @@
 @import "../../../../styles/variables.scss";
 
 .product-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 200px;
   padding: 20px;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
   text-align: left;
+  -webkit-transition: ease 0.3s;
+  -o-transition: ease 0.3s;
   transition: ease 0.3s;
 
   &:hover {
-    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.25);
+            box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.25);
   }
 
   &__img-container {
     height: 300px;
     overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
 
   &__img {
@@ -32,7 +47,8 @@
     font-weight: bold;
     margin-top: 10px;
     height: 3em;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
     cursor: pointer;
   }
 
@@ -42,8 +58,12 @@
   }
 
   &__price-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
 
   &__button {
