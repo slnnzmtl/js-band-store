@@ -8,4 +8,15 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    .product-info {
+      margin-bottom: 20px;
+    }
+
+    .cart-widget {
+      width: 100%!important;
+    }
+  }
 }

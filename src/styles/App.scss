@@ -7,7 +7,12 @@
   &__main {
     width: 85%;
     margin: auto;
+
+    @media screen and (max-width: 850px) {
+      width: 95%;
+    }
   }
+  
 }
 
 .App-logo {
