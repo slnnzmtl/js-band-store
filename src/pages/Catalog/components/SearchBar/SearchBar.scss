@@ -1,10 +1,15 @@
 .search-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   width: 100%;
   margin: auto;
   margin-bottom: 20px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 
   &__name {
     outline: none;
@@ -12,7 +17,8 @@
     width: 235px;
     padding: 10px;
     border: none;
-    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+            box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
 
     &:focus {
       background-color: rgb(245, 245, 245);
@@ -29,6 +35,7 @@
     margin-right: 0;
     border: none;
     border-radius: 5px;
-    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+            box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
   }
 }
