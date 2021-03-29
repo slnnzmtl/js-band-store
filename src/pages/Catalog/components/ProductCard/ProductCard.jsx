@@ -13,7 +13,7 @@ const ProductCard = ({ data, onClick }) => (
         role="presentation"
       />
     </div>
-    <span role="presentation" className="product-card__title" onClick={() => onClick(data.id)}>{data.title}</span>
+    <p role="presentation" className="product-card__title" onClick={() => onClick(data.id)}>{data.title}</p>
     <span className="product-card__author">{data.author}</span>
     <div className="product-card__price-container">
       <span className="product-card__price">{data.price}</span>
