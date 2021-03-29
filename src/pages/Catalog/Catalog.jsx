@@ -1,34 +1,22 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector, useStore } from "react-redux";
-import GoodsList from "../../components/GoodsList/GoodsList";
-import { GET_GOODS } from "../../store/actionTypes";
-import API from "../../utils/api/CatalogAPI";
-import reducer from "./reducer";
-import "./Catalog.scss";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import ProductList from '../../components/ProductList/ProductList';
+import reducer from './store/catalogSlice';
+import './Catalog.scss';
+import * as actions from './store/catalogActions';
+import Loader from '../../components/Loader/Loader';
 
 const Catalog = () => {
+  const { productList, isLoading } = useSelector((state) => state.catalog);
 
-  const dispatch = useDispatch();
-  const token = useSelector(state => state.auth.currentUser && state.auth.currentUser.token);
-  const goodsList = useSelector(state => state.catalog && state.catalog.goodsList);
-
-  useEffect(() => {
-    if (token)
-    API.getBooks(token)
-    .then(data => {
-      dispatch({
-        type: GET_GOODS,
-        data
-      })
-    })
-  }, [token]);
+  if (isLoading) return <Loader />;
 
   return (
     <div className="catalog">
-      <GoodsList goods={goodsList} />
+      <ProductList data={productList} />
     </div>
-  )
+  );
 };
 
-export {reducer};
+export { reducer, actions };
 export default Catalog;
