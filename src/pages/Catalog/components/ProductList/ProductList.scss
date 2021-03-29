@@ -1,10 +1,10 @@
-.goods-list {
+.product-list {
   display: flex;
   max-width: 100%;
   flex-wrap: wrap;
   justify-content: center;
   
-  .good-card {
-    margin: 20px;
+  .product-card {
+    margin: 10px;
   }
 }

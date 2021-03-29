@@ -1,37 +1,22 @@
-import AuthForm from "./components/AuthForm/AuthForm";
-import "./Login.scss";
-import reducer from "./reducer";
+import './Login.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { 
-  SET_CURRENT_USER
-} from "../../store/actionTypes";
-import API from "../../utils/api/AuthAPI";
-import { useState } from "react";
-
+import React, { useState } from 'react';
+import reducer from './store/loginSlice';
+import * as actions from './store/loginActions';
+import AuthForm from './components/AuthForm/AuthForm';
 
 const Login = () => {
-
   const dispatch = useDispatch();
-  const currentUser = useSelector(state => state.auth.currentUser);
-  const [name, setName] = useState(currentUser.username);
-
-  console.log('login index');
-
-  const formSubmit = value => {
-    API.login(value)
-    .then(response => dispatch({
-      type: SET_CURRENT_USER, 
-      data: response
-    }));
-  };
+  const currentUser = useSelector((state) => state.auth.currentUser);
+  const [name, setName] = useState(currentUser && currentUser.username);
 
   return (
     <div className="login-page">
-      <AuthForm onSubmit={formSubmit} type="login" name={name} setName={setName} />
+      <AuthForm onSubmit={(data) => dispatch(actions.userLogin(data))} type="login" name={name} setName={setName} />
     </div>
   );
 };
 
-export { reducer };
+export { reducer, actions };
 
 export default Login;

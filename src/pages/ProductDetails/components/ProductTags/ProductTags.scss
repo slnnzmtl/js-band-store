@@ -1,0 +1,9 @@
+.product-tags {
+  display: flex;
+  align-items: center;
+
+  &__img {
+    width: 2em;
+    margin-right: 10px;
+  }
+}

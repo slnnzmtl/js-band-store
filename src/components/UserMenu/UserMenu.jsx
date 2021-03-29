@@ -1,24 +1,24 @@
-import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
-import * as Actions from "../../store/actionTypes";
-import "./UserMenu.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { actions } from '../../pages/Login/Login';
+import './UserMenu.scss';
 
-const UserMenu = ({currentUser}) => {
-
+const UserMenu = ({ currentUser }) => {
   const dispatch = useDispatch();
 
   const signout = () => {
-    dispatch({type: Actions.RESET_CURRENT_USER});
+    dispatch({ type: actions.USER_LOGOUT });
   };
 
   return (
     <div className="user-menu">
       <div className="user-menu__container">
         <span className="user-menu__username">{currentUser.username}</span>
-        <button className="user-menu__button" onClick={signout}>Sign Out</button>
+        <button type="button" className="user-menu__button button" onClick={signout}>Sign Out</button>
       </div>
     </div>
-  )
+  );
 };
 
 UserMenu.propTypes = {
@@ -26,7 +26,7 @@ UserMenu.propTypes = {
 };
 
 UserMenu.defaultProps = {
-  currentUser: {}
+  currentUser: {},
 };
 
 export default UserMenu;

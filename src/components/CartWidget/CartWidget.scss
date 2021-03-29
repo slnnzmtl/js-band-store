@@ -1,0 +1,23 @@
+.cart-widget {
+  width: 600px;
+  height: 100%;
+  padding: 10px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+
+  &__field {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  &__counter {
+    width: 2em;
+  }
+
+  &__button {
+    align-self: flex-end;
+  }
+}
